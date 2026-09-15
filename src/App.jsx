@@ -1,8 +1,16 @@
 import StudentCard from "./StudentCard";
+import "./App.css";
+
 function App() {
   return (
     <div className="app">
-      <h1>Student Profiles</h1>
+      <header className="app-header">
+        <p className="eyebrow">Campus directory</p>
+        <h1>Student Profiles</h1>
+        <p className="intro">
+          Meet the people learning, creating, and building what comes next.
+        </p>
+      </header>
       <div className="card-container">
         <StudentCard
           name="Priya"
