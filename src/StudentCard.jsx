@@ -1,16 +1,20 @@
+import { useState } from "react";
+
 function StudentCard(props) {
+    const [showProfile, setShowProfile] = useState(false);
+
     function handleClick() {
-        window.alert(
-            `${props.name}\n${props.course} - ${props.year}\nSkills: ${props.skills.join(", ")}`
-        );
+        if (showProfile === false) {
+            setShowProfile(true);
+        } else {
+            setShowProfile(false);
+        }
     }
     return (
         <div className="student-card">
             <div className="card-topline">
-                <span className="avatar">{props.name.charAt(0)}</span>
-                <span className={props.isStudent ? "status active" : "status"}>
-                    {props.isStudent ? "Current student" : "Alumni"}
-                </span>
+                <span className="avatar">{props.name}</span>
+                <span className="status">{props.status}</span>
             </div>
             <h2>{props.name}</h2>
             <p className="course">{props.course}</p>
@@ -24,7 +28,16 @@ function StudentCard(props) {
                     <span className="skill" key={skill}>{skill}</span>
                 ))}
             </div>
-            <button onClick={handleClick}>View Profile</button>
+            {showProfile && (
+                <div className="profile-details">
+                    <p><strong>Email:</strong>{props.email}</p>
+                    <p><strong>Location:</strong>{props.location}</p>
+                    <p><strong>About:</strong>{props.about}</p>
+                </div>
+            )}
+            <button onClick={handleClick}>
+                {showProfile ? "Hide Profile" : "View Profile"}
+            </button>
         </div>
     );
 }
